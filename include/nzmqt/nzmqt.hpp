@@ -298,7 +298,7 @@ namespace nzmqt
         friend class ZMQSocket;
 
     public:
-        ZMQContext(QObject* parent_ = 0, int io_threads_ = NZMQT_DEFAULT_IOTHREADS);
+        ZMQContext(QObject* parent_ = 0, int io_threads_ = NZMQT_DEFAULT_IOTHREADS, void *existing_context_ = 0);
 
         // Deleting children is necessary, because otherwise the children are deleted after the context
         // which results in a blocking state. So we delete the children before the zmq::context_t
@@ -393,7 +393,7 @@ namespace nzmqt
         typedef ZMQContext super;
 
     public:
-        PollingZMQContext(QObject* parent_ = 0, int io_threads_ = NZMQT_DEFAULT_IOTHREADS);
+        PollingZMQContext(QObject* parent_ = 0, int io_threads_ = NZMQT_DEFAULT_IOTHREADS, void *existing_context_ = 0);
 
         // Sets the polling interval.
         // Note that the interval does not denote the time the zmq::poll() function will
@@ -484,7 +484,7 @@ namespace nzmqt
         typedef ZMQContext super;
 
     public:
-        SocketNotifierZMQContext(QObject* parent_ = 0, int io_threads_ = NZMQT_DEFAULT_IOTHREADS);
+        SocketNotifierZMQContext(QObject* parent_ = 0, int io_threads_ = NZMQT_DEFAULT_IOTHREADS, void *existing_context_ = 0);
 
         void start();
 
@@ -496,9 +496,9 @@ namespace nzmqt
         SocketNotifierZMQSocket* createSocketInternal(ZMQSocket::Type type_);
     };
 
-    NZMQT_API inline ZMQContext* createDefaultContext(QObject* parent_ = 0, int io_threads_ = NZMQT_DEFAULT_IOTHREADS)
+    NZMQT_API inline ZMQContext* createDefaultContext(QObject* parent_ = 0, int io_threads_ = NZMQT_DEFAULT_IOTHREADS, void *existing_context_ = 0)
     {
-        return new NZMQT_DEFAULT_ZMQCONTEXT_IMPLEMENTATION(parent_, io_threads_);
+        return new NZMQT_DEFAULT_ZMQCONTEXT_IMPLEMENTATION(parent_, io_threads_, existing_context_);
     }
 }
 

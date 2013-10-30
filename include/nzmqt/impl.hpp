@@ -341,9 +341,9 @@ NZMQT_INLINE void ZMQSocket::unsubscribeFrom(const QByteArray& filter_)
  * ZMQContext
  */
 
-NZMQT_INLINE ZMQContext::ZMQContext(QObject* parent_, int io_threads_)
+NZMQT_INLINE ZMQContext::ZMQContext(QObject* parent_, int io_threads_, void *existing_context_)
     : qsuper(parent_)
-    , zmqsuper(io_threads_)
+    , zmqsuper(io_threads_, existing_context_)
 {
 }
 
@@ -432,8 +432,8 @@ NZMQT_INLINE void PollingZMQSocket::onMessageReceived(const QList<QByteArray>& m
  * PollingZMQContext
  */
 
-NZMQT_INLINE PollingZMQContext::PollingZMQContext(QObject* parent_, int io_threads_)
-    : super(parent_, io_threads_)
+NZMQT_INLINE PollingZMQContext::PollingZMQContext(QObject* parent_, int io_threads_, void *existing_context_)
+    : super(parent_, io_threads_, existing_context_)
     , m_pollItemsMutex(QMutex::Recursive)
     , m_interval(NZMQT_POLLINGZMQCONTEXT_DEFAULT_POLLINTERVAL)
     , m_stopped(false)
@@ -612,8 +612,8 @@ NZMQT_INLINE void SocketNotifierZMQSocket::socketReadActivity()
  * SocketNotifierZMQContext
  */
 
-NZMQT_INLINE SocketNotifierZMQContext::SocketNotifierZMQContext(QObject* parent_, int io_threads_)
-    : super(parent_, io_threads_)
+NZMQT_INLINE SocketNotifierZMQContext::SocketNotifierZMQContext(QObject* parent_, int io_threads_, void *existing_context_)
+    : super(parent_, io_threads_, existing_context_)
 {
 }
 
