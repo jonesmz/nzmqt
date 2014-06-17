@@ -1,5 +1,11 @@
 # Releases for ZMQ 3.x
 
+## Release 3.2.1 (TO BE RELEASED)
+
+### API Changes
+
+* Convert ZMQSocket::sendMessage(...) methods to slots.
+
 ## Release 3.2.0
 
 * Improved documentation.
