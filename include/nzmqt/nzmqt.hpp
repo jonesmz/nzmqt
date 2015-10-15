@@ -31,14 +31,14 @@
 
 #include <zmq.hpp>
 
-#include <QByteArray>
-#include <QFlag>
-#include <QList>
-#include <QMetaType>
-#include <QMutex>
-#include <QObject>
-#include <QRunnable>
-#include <QVector>
+#include <QtCore/QByteArray>
+#include <QtCore/QFlag>
+#include <QtCore/QList>
+#include <QtCore/QMetaType>
+#include <QtCore/QMutex>
+#include <QtCore/QObject>
+#include <QtCore/QRunnable>
+#include <QtCore/QVector>
 
 // Define default context implementation to be used.
 #ifndef NZMQT_DEFAULT_ZMQCONTEXT_IMPLEMENTATION

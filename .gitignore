@@ -46,3 +46,5 @@ desktop.ini
 # Project directories
 externals/
 
+.project
+.cproject
