@@ -31,10 +31,10 @@
 
 #include <nzmqt/nzmqt.hpp>
 
-#include <QByteArray>
-#include <QDateTime>
-#include <QList>
-#include <QTimer>
+#include <QtCore/QByteArray>
+#include <QtCore/QDateTime>
+#include <QtCore/QList>
+#include <QtCore/QTimer>
 
 
 namespace nzmqt

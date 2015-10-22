@@ -183,7 +183,7 @@ namespace nzmqt
 
         ~ZMQSocket();
 
-        using zmqsuper::operator void *;
+        using zmqsuper::operator void*;
 
         void setOption(Option optName_, const void *optionVal_, size_t optionValLen_);
 
@@ -315,7 +315,7 @@ namespace nzmqt
         // Deleting children is necessary, because otherwise the children are deleted after the context
         // which results in a blocking state. So we delete the children before the zmq::context_t
         // destructor implementation is called.
-        ~ZMQContext();
+        virtual ~ZMQContext();
 
         using zmqsuper::operator void*;
 
@@ -407,6 +407,8 @@ namespace nzmqt
     public:
         PollingZMQContext(QObject* parent_ = 0, int io_threads_ = NZMQT_DEFAULT_IOTHREADS);
 
+        virtual ~PollingZMQContext();
+
         // Sets the polling interval.
         // Note that the interval does not denote the time the zmq::poll() function will
         // block in order to wait for incoming messages. Instead, it denotes the time in-between
@@ -416,13 +418,13 @@ namespace nzmqt
         int getInterval() const;
 
         // Starts the polling process by scheduling a call to the 'run()' method into Qt's event loop.
-        void start();
+        virtual void start();
 
         // Stops the polling process in the sense that no further 'run()' calls will be scheduled into
         // Qt's event loop.
-        void stop();
+        virtual void stop();
 
-        bool isStopped() const;
+        virtual bool isStopped() const;
 
     public slots:
         // If the polling process is not stopped (by a previous call to the 'stop()' method) this
@@ -520,8 +522,8 @@ Q_DECLARE_METATYPE(QList< QList<QByteArray> >)
 Q_DECLARE_METATYPE(nzmqt::ZMQSocket::SendFlags)
 
 
-#if !defined(NZMQT_LIB)
- #include "nzmqt/impl.hpp"
-#endif
+//#if !defined(NZMQT_LIB)
+// #include "nzmqt/impl.hpp"
+//#endif
 
 #endif // NZMQT_H

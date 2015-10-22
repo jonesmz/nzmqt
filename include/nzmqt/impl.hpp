@@ -34,13 +34,13 @@
 #include <QtCore/QSocketNotifier>
 #include <QtCore/QTimer>
 
-#if defined(NZMQT_LIB)
+//#if defined(NZMQT_LIB)
 // #pragma message("nzmqt is built as library")
  #define NZMQT_INLINE
-#else
+//#else
 // #pragma message("nzmqt is built inline")
- #define NZMQT_INLINE inline
-#endif
+// #define NZMQT_INLINE inline
+//#endif
 
 namespace nzmqt
 {
@@ -471,6 +471,9 @@ NZMQT_INLINE PollingZMQContext::PollingZMQContext(QObject* parent_, int io_threa
     setAutoDelete(false);
 }
 
+NZMQT_INLINE PollingZMQContext::~PollingZMQContext() {
+}
+
 NZMQT_INLINE void PollingZMQContext::setInterval(int interval_)
 {
     m_interval = interval_;
@@ -555,7 +558,7 @@ NZMQT_INLINE PollingZMQSocket* PollingZMQContext::createSocketInternal(ZMQSocket
 
 NZMQT_INLINE void PollingZMQContext::registerSocket(ZMQSocket* socket_)
 {
-    pollitem_t pollItem = { *socket_, 0, ZMQSocket::EVT_POLLIN, 0 };
+    pollitem_t pollItem = { (void*)(*socket_), 0, ZMQSocket::EVT_POLLIN, 0 };
 
     QMutexLocker lock(&m_pollItemsMutex);
 
