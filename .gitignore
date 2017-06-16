@@ -19,6 +19,8 @@ ui_*.h
 *.pro.user.*
 *-build-*
 Makefile
+.obj/
+.moc/
 
 # Debug and Release directories (created under Windows, not Linux)
 bin/
@@ -46,3 +48,5 @@ desktop.ini
 # Project directories
 externals/
 
+.project
+.cproject

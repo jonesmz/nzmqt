@@ -23,19 +23,13 @@
 # The views and conclusions contained in the software and documentation are those of the
 # authors and should not be interpreted as representing official policies, either expressed
 # or implied, of Johann Duscher.
+include(project_settings.pri)
+TARGET     = nzmqt_app
+TEMPLATE   = app
 
-
-QT       += core
-
-QT       -= gui
-
-TARGET = nzmqt_app
-VERSION = 3.2.1
-DESTDIR = $$_PRO_FILE_PWD_/../bin
-CONFIG   += console
-CONFIG   -= app_bundle
-
-TEMPLATE = app
+CONFIG    += console
+CONFIG    += link_pkgconfig
+PKGCONFIG += cppzmq
 
 DEFINES += \
 # Uncomment this line for nzmqt "Include and Source File" compilation option.
@@ -58,11 +52,8 @@ HEADERS += \
     reqrep/Replier.hpp \
     app/NzmqtApp.hpp
 
-LIBS += -lzmq
-
 INCLUDEPATH += \
     ../include \
-    ../3rdparty/cppzmq \
     $(QTDIR)/include \
     /opt/local/include
 

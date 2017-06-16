@@ -23,20 +23,13 @@
 # The views and conclusions contained in the software and documentation are those of the
 # authors and should not be interpreted as representing official policies, either expressed
 # or implied, of Johann Duscher.
+include(project_settings.pri)
+TARGET     = nzmqt
+TEMPLATE   = lib
 
-
-QT       -= gui
-
-TARGET = nzmqt
-VERSION = 3.2.1
-DESTDIR = $$_PRO_FILE_PWD_/../bin
-TEMPLATE = lib
-CONFIG += staticlib
-
-CONFIG   += debug_and_release
-CONFIG(debug, debug|release) {
-     TARGET = $$join(TARGET,,,d)
-}
+CONFIG    += staticlib
+CONFIG    += link_pkgconfig
+PKGCONFIG += cppzmq
 
 DEFINES += \
     NZMQT_LIB
@@ -48,8 +41,6 @@ HEADERS += \
     ../include/nzmqt/global.hpp \
     ../include/nzmqt/nzmqt.hpp \
     ../include/nzmqt/impl.hpp
-
-LIBS += -lzmq
 
 INCLUDEPATH += \
     ../include \

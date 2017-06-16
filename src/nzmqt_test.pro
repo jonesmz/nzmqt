@@ -23,18 +23,14 @@
 # The views and conclusions contained in the software and documentation are those of the
 # authors and should not be interpreted as representing official policies, either expressed
 # or implied, of Johann Duscher.
+include(project_settings.pri)
+TARGET     = nzmqt_test
+TEMPLATE   = app
 
-QT       += testlib
-
-QT       -= gui
-
-TARGET = nzmqt_test
-VERSION = 3.2.1
-DESTDIR = $$_PRO_FILE_PWD_/../bin
-CONFIG   += console
-CONFIG   -= app_bundle
-
-TEMPLATE = app
+QT        += testlib
+CONFIG    += console
+CONFIG    += link_pkgconfig
+PKGCONFIG += cppzmq
 
 DEFINES += \
 #    NZMQT_LIB \
@@ -54,11 +50,8 @@ HEADERS += \
     reqrep/Replier.hpp \
     reqrep/Requester.hpp
 
-LIBS += -lzmq
-
 INCLUDEPATH += \
     ../include \
-    ../3rdparty/cppzmq \
     $(QTDIR)/include \
     /opt/local/include
 

@@ -121,22 +121,22 @@ namespace nzmqt
     public:
         enum Type
         {
-            TYP_PUB = ZMQ_PUB,
-            TYP_SUB = ZMQ_SUB,
-            TYP_PUSH = ZMQ_PUSH,
-            TYP_PULL = ZMQ_PULL,
-            TYP_REQ = ZMQ_REQ,
-            TYP_REP = ZMQ_REP,
+            TYP_PUB    = ZMQ_PUB,
+            TYP_SUB    = ZMQ_SUB,
+            TYP_PUSH   = ZMQ_PUSH,
+            TYP_PULL   = ZMQ_PULL,
+            TYP_REQ    = ZMQ_REQ,
+            TYP_REP    = ZMQ_REP,
             TYP_DEALER = ZMQ_DEALER,
             TYP_ROUTER = ZMQ_ROUTER,
-            TYP_PAIR = ZMQ_PAIR,
-            TYP_XPUB = ZMQ_XPUB,
-            TYP_XSUB = ZMQ_XSUB
+            TYP_PAIR   = ZMQ_PAIR,
+            TYP_XPUB   = ZMQ_XPUB,
+            TYP_XSUB   = ZMQ_XSUB
         };
 
         enum Event
         {
-            EVT_POLLIN = ZMQ_POLLIN,
+            EVT_POLLIN  = ZMQ_POLLIN,
             EVT_POLLOUT = ZMQ_POLLOUT,
             EVT_POLLERR = ZMQ_POLLERR
         };
@@ -144,7 +144,7 @@ namespace nzmqt
 
         enum SendFlag
         {
-            SND_MORE = ZMQ_SNDMORE,
+            SND_MORE     = ZMQ_SNDMORE,
             SND_DONTWAIT = ZMQ_DONTWAIT
         };
         Q_DECLARE_FLAGS(SendFlags, SendFlag)
@@ -158,35 +158,36 @@ namespace nzmqt
         enum Option
         {
             // Get only.
-            OPT_TYPE = ZMQ_TYPE,
-            OPT_RCVMORE = ZMQ_RCVMORE,
-            OPT_FD = ZMQ_FD,
-            OPT_EVENTS = ZMQ_EVENTS,
-            OPT_MAXMSGSIZE = ZMQ_MAXMSGSIZE,
+            OPT_TYPE              = ZMQ_TYPE,
+            OPT_RCVMORE           = ZMQ_RCVMORE,
+            OPT_FD                = ZMQ_FD,
+            OPT_EVENTS            = ZMQ_EVENTS,
+            OPT_LAST_ENDPOINT     = ZMQ_LAST_ENDPOINT,
+            OPT_MAXMSGSIZE        = ZMQ_MAXMSGSIZE,
 
             // Set only.
-            OPT_SUBSCRIBE = ZMQ_SUBSCRIBE,
-            OPT_UNSUBSCRIBE = ZMQ_UNSUBSCRIBE,
-            OPT_IMMEDIATE = ZMQ_IMMEDIATE,
+            OPT_SUBSCRIBE         = ZMQ_SUBSCRIBE,
+            OPT_UNSUBSCRIBE       = ZMQ_UNSUBSCRIBE,
+            OPT_IMMEDIATE         = ZMQ_IMMEDIATE,
 
             // Get and set.
-            OPT_AFFINITY = ZMQ_AFFINITY,
-            OPT_IDENTITY = ZMQ_IDENTITY,
-            OPT_RATE = ZMQ_RATE,
-            OPT_RECOVERY_IVL = ZMQ_RECOVERY_IVL,
-            OPT_SNDBUF = ZMQ_SNDBUF,
-            OPT_RCVBUF = ZMQ_RCVBUF,
-            OPT_LINGER = ZMQ_LINGER,
-            OPT_RECONNECT_IVL = ZMQ_RECONNECT_IVL,
+            OPT_AFFINITY          = ZMQ_AFFINITY,
+            OPT_IDENTITY          = ZMQ_IDENTITY,
+            OPT_RATE              = ZMQ_RATE,
+            OPT_RECOVERY_IVL      = ZMQ_RECOVERY_IVL,
+            OPT_SNDBUF            = ZMQ_SNDBUF,
+            OPT_RCVBUF            = ZMQ_RCVBUF,
+            OPT_LINGER            = ZMQ_LINGER,
+            OPT_RECONNECT_IVL     = ZMQ_RECONNECT_IVL,
             OPT_RECONNECT_IVL_MAX = ZMQ_RECONNECT_IVL_MAX,
-            OPT_BACKLOG = ZMQ_BACKLOG,
-            OPT_SNDHWM = ZMQ_SNDHWM,
-            OPT_RCVHWM = ZMQ_RCVHWM,
-            OPT_SNDTIMEO = ZMQ_SNDTIMEO,
-            OPT_RCVTIMEO = ZMQ_RCVTIMEO,
-            OPT_IPV6 = ZMQ_IPV6,
-            OPT_CONFLATE = ZMQ_CONFLATE,
-            OPT_TOS = ZMQ_TOS
+            OPT_BACKLOG           = ZMQ_BACKLOG,
+            OPT_SNDHWM            = ZMQ_SNDHWM,
+            OPT_RCVHWM            = ZMQ_RCVHWM,
+            OPT_SNDTIMEO          = ZMQ_SNDTIMEO,
+            OPT_RCVTIMEO          = ZMQ_RCVTIMEO,
+            OPT_IPV6              = ZMQ_IPV6,
+            OPT_CONFLATE          = ZMQ_CONFLATE,
+            OPT_TOS               = ZMQ_TOS
         };
 
         ~ZMQSocket();
@@ -300,7 +301,7 @@ namespace nzmqt
     private:
         friend class ZMQContext;
 
-        ZMQContext* m_context;
+        ZMQContext* m_context = nullptr;
     };
     Q_DECLARE_OPERATORS_FOR_FLAGS(ZMQSocket::Events)
     Q_DECLARE_OPERATORS_FOR_FLAGS(ZMQSocket::SendFlags)
@@ -360,31 +361,6 @@ namespace nzmqt
     private:
         Sockets m_sockets;
     };
-
-/*
-    class ZMQDevice : public QObject, public QRunnable
-    {
-        Q_OBJECT
-        Q_ENUMS(Type)
-
-    public:
-        enum Type
-        {
-            TYP_QUEUE = ZMQ_QUEUE,
-            TYP_FORWARDED = ZMQ_FORWARDER,
-            TYP_STREAMER = ZMQ_STREAMER
-        };
-
-        ZMQDevice(Type type, ZMQSocket* frontend, ZMQSocket* backend);
-
-        void run();
-
-    private:
-        Type type_;
-        ZMQSocket* frontend_;
-        ZMQSocket* backend_;
-    };
-*/
 
     class PollingZMQContext;
 
@@ -459,9 +435,9 @@ namespace nzmqt
         typedef QVector<pollitem_t> PollItems;
 
         PollItems m_pollItems;
-        QMutex m_pollItemsMutex;
-        int m_interval;
-        volatile bool m_stopped;
+        QMutex m_pollItemsMutex{QMutex::Recursive};
+        int m_interval = NZMQT_POLLINGZMQCONTEXT_DEFAULT_POLLINTERVAL;
+        volatile bool m_stopped = false;
     };
 
 
@@ -494,8 +470,8 @@ namespace nzmqt
         void socketWriteActivity();
 
     private:
-        QSocketNotifier *socketNotifyRead_;
-        QSocketNotifier *socketNotifyWrite_;
+        QSocketNotifier *socketNotifyRead_  = nullptr;
+        QSocketNotifier *socketNotifyWrite_ = nullptr;
     };
 
     class NZMQT_API SocketNotifierZMQContext : public ZMQContext
